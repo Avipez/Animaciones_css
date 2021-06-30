@@ -15,19 +15,42 @@
 
         body {
             margin: 0;
-            height: 100vh;
+            height: 100%;
             width: 100%;
             display: grid;
-            counter-reset: game;
+            counter-reset: score;
             place-items: center;
+            font-family: sans-serif;
+        }
+
+        p {
+            margin-top: 50px;
+        }
+
+        input[type=checkbox] {
+            appearance: none;
+            height: 50px;
+            width: 80px;
+            cursor: pointer;
+            position: relative;
+            top: 15px;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+
         }
 
         input:checked {
-            counter-increment: game;
+            counter-increment: score;
         }
 
-        .total-count::after {
-            content: counter(game);
+        .score {
+            transform: translate(20px, 0px);
+            top: 0;
+        }
+
+        .score::after {
+            content: counter(score);
         }
 
         .phone {
@@ -48,16 +71,14 @@
             height: 450px;
             width: 80px;
             background: transparent;
-        }
-
-        .layer-1 input[type=checkbox] {
-            animation-name: layer-1;
+            animation-name: jump;
             animation-duration: 1s;
+            animation-delay: .5s;
             animation-timing-function: ease-in-out;
             animation-iteration-count: infinite;
         }
 
-        @keyframes layer-1 {
+        @keyframes jump {
             0% {
                 bottom: 0;
             }
@@ -77,6 +98,11 @@
             height: 450px;
             width: 80px;
             background: transparent;
+            animation-name: jump;
+            animation-duration: 1s;
+            animation-delay: .8s;
+            animation-timing-function: ease-in-out;
+            animation-iteration-count: infinite;
         }
 
 
@@ -89,6 +115,8 @@
             margin: 0 auto;
             width: 220px;
             height: 400px;
+            border-radius: 20px 20px 0 0;
+            overflow: hidden;
             background: #865439;
             box-shadow: 0 19px 38px rgba(0, 0, 0, .3), 0 15px 12px rgba(0, 0, 0, .22);
         }
@@ -102,6 +130,11 @@
             background: transparent;
             bottom: 0;
             left: 50px;
+            animation-name: jump;
+            animation-duration: 1s;
+            animation-delay: 1s;
+            animation-timing-function: ease-in-out;
+            animation-iteration-count: infinite;
         }
 
         .layer-5 {
@@ -112,6 +145,8 @@
             margin: 0 auto;
             width: 200px;
             height: 300px;
+            border-radius: 20px 20px 0 0;
+            overflow: hidden;
             background: #865439;
             box-shadow: 0 19px 38px rgba(0, 0, 0, .3), 0 15px 12px rgba(0, 0, 0, .22);
         }
@@ -124,6 +159,10 @@
             background: transparent;
             bottom: 0;
             right: 50px;
+            animation-name: jump;
+            animation-duration: .5s;
+            animation-timing-function: ease-in-out;
+            animation-iteration-count: infinite;
         }
 
         .layer-7 {
@@ -134,6 +173,8 @@
             margin: 0 auto;
             width: 200px;
             height: 200px;
+            border-radius: 20px 20px 0 0;
+            overflow: hidden;
             background: #865439;
             box-shadow: 0 19px 38px rgba(0, 0, 0, .3), 0 15px 12px rgba(0, 0, 0, .22);
         }
@@ -141,32 +182,96 @@
         .layer-8 {
             position: absolute;
             z-index: 8;
-            width: 140px;
-            height: 100px;
+            width: 80px;
+            height: 120px;
             left: 0;
             right: 0;
             bottom: 0;
             background: green;
             margin: 0 auto;
+            border-radius: 40px 40px 0 0;
+        }
+
+        .layer-8-1 {
+            position: absolute;
+            z-index: 8;
+            width: 80px;
+            height: 96px;
+            bottom: 0;
+            right: 70px;
+            background: green;
+            margin: 0 auto;
+            border-radius: 40px 40px 0 0;
+        }
+
+        .layer-8-2 {
+            position: absolute;
+            z-index: 8;
+            width: 80px;
+            height: 96px;
+            bottom: 0;
+            left: 70px;
+            background: green;
+            margin: 0 auto;
+            border-radius: 40px 40px 0 0;
         }
 
         .layer-9 {
             position: absolute;
             z-index: 9;
             width: 100px;
-            height: 80px;
+            height: 120px;
             bottom: 0;
+        }
+
+        .layer-91 {
             background: white;
+            width: 40px;
+            height: 60%;
+            border-radius: 0 40px 30px 0;
+            position: absolute;
+            bottom: 0;
+            left: 80px;
+        }
+
+        .layer-92 {
+            background: white;
+            width: 80px;
+            height: 100%;
+            border-radius: 40px 40px 0 0;
+            position: absolute;
+            bottom: 0;
+            left: 0px;
         }
 
         .layer-10 {
             position: absolute;
             z-index: 10;
             width: 100px;
-            height: 80px;
+            height: 120px;
             bottom: 0;
-            background: white;
             right: 0;
+        }
+
+        .layer-101 {
+            background-color: white;
+            width: 40px;
+            height: 60%;
+            border-radius: 40px 0 0 30px;
+            position: absolute;
+            bottom: 0;
+            right: 80px;
+
+        }
+
+        .layer-102 {
+            background: white;
+            border-radius: 40px 40px 0 0;
+            height: 100%;
+            width: 80px;
+            position: absolute;
+            bottom: 0;
+            right: 0
         }
 
         .left-ear--outter {
@@ -307,22 +412,8 @@
 </head>
 
 <body>
-    <div class="patron">
-        <div class="cuadrante">
-            <div class="cuadrado-1"></div>
-            <div class="cuadrado-2"></div>
-            <div class="cuadrado-3"></div>
-            <div class="cuadrado-4"></div>
-        </div>
-    </div>
-    <div class="patron">
-        <div class="cuadrado-54"></div>
-        <div class="cuadrado-55"></div>
-        <div class="cuadrado-56"></div>
-    </div>
     <div class="phone">
         <div class="layer-1">
-            <input type="checkbox">
             <div class="left-ear--outter"></div>
             <div class="left-ear--inner"></div>
             <div class="right-ear--outter"></div>
@@ -331,6 +422,7 @@
                 <div class="head_eye left-eye"></div>
                 <div class="head_eye right-eye"></div>
             </div>
+            <input type="checkbox">
         </div>
         <div class="layer-2">
             <div class="left-ear--outter"></div>
@@ -341,6 +433,7 @@
                 <div class="head_eye left-eye"></div>
                 <div class="head_eye right-eye"></div>
             </div>
+            <input type="checkbox">
         </div>
         <div class="layer-3">
             <div class="grass"></div>
@@ -361,6 +454,7 @@
                 <div class="head_eye left-eye"></div>
                 <div class="head_eye right-eye"></div>
             </div>
+            <input type="checkbox">
         </div>
         <div class="layer-5">
             <div class="grass-2"></div>
@@ -380,6 +474,7 @@
                 <div class="head_eye left-eye"></div>
                 <div class="head_eye right-eye"></div>
             </div>
+            <input type="checkbox">
         </div>
         <div class="layer-7">
             <div class="grass-2"></div>
@@ -390,49 +485,22 @@
                 <div class="cuadrado-4"></div>
             </div>
         </div>
-        <div class="layer-8"></div>
-        <div class="layer-9"></div>
-        <div class="layer-10"></div>
+        <div class="layer-8">
+            
+        <div class="layer-8-1"></div>
+        <div class="layer-8-2"></div>
+        </div>
+        <div class="layer-9">
+            <div class="layer-91"></div>
+            <div class="layer-92"></div>
+        </div>
+        <div class="layer-10">
+            <div class="layer-101"></div>
+            <div class="layer-102"></div>
+        </div>
+        <h3 class="score">Conejos totales: </h3>
     </div>
-    <ul>
-        <li>
-            <input type="checkbox" name="" id="">
-            <div class="shield"></div>
-        </li>
-        <li>
-            <input type="checkbox" name="" id="">
-            <div class="shield"></div>
-        </li>
-        <li>
-            <input type="checkbox" name="" id="">
-            <div class="shield"></div>
-        </li>
-        <li>
-            <input type="checkbox" name="" id="">
-            <div class="shield"></div>
-        </li>
-        <li>
-            <input type="checkbox" name="" id="">
-            <div class="shield"></div>
-        </li>
-        <li>
-            <input type="checkbox" name="" id="">
-            <div class="shield"></div>
-        </li>
-        <li>
-            <input type="checkbox" name="" id="">
-            <div class="shield"></div>
-        </li>
-        <li>
-            <input type="checkbox" name="" id="">
-            <div class="shield"></div>
-        </li>
-        <li>
-            <input type="checkbox" name="" id="">
-            <div class="shield"></div>
-        </li>
-    </ul>
-    <h3 class="total-count">Puntos totales: </h3>
+    <p>Hecho con ❤ por <a href="https://twitter.com/Devopez">David Lopez</a></p>
 </body>
 
 </html>
