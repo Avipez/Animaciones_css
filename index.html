@@ -19,6 +19,7 @@
             width: 100%;
             display: grid;
             counter-reset: score;
+            counter-increment: score 4;
             place-items: center;
             font-family: sans-serif;
         }
@@ -41,22 +42,26 @@
         }
 
         input:checked {
-            counter-increment: score;
+            counter-increment: score -1;
         }
 
         .score {
-            transform: translate(20px, 0px);
-            top: 0;
+            transform: translate(70px, -10px);
         }
 
         .score::after {
             content: counter(score);
         }
 
+        h1 {
+            transform: translate(70px, 0);
+        }
+
         .phone {
             position: relative;
             border: 8px solid black;
-            border-radius: 6px;
+            border-radius: 30px;
+            overflow: hidden;
             height: 600px;
             width: 300px;
             background-color: #CCEFFF;
@@ -413,6 +418,7 @@
 
 <body>
     <div class="phone">
+        <h1>Atrapa los conejos!!!</h1>
         <div class="layer-1">
             <div class="left-ear--outter"></div>
             <div class="left-ear--inner"></div>
@@ -498,7 +504,7 @@
             <div class="layer-101"></div>
             <div class="layer-102"></div>
         </div>
-        <h3 class="score">Conejos totales: </h3>
+        <h4 class="score">Conejos restantes: </h3>
     </div>
     <p>Hecho con ❤ por <a href="https://twitter.com/Devopez">David Lopez</a></p>
 </body>
