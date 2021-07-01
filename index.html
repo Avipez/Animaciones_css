@@ -29,21 +29,20 @@
         }
 
         input[type=checkbox] {
-            appearance: none;
-            height: 50px;
-            width: 80px;
+            visibility: hidden;
             cursor: pointer;
-            position: relative;
-            top: 15px;
+            position: absolute;
+            top: 30px;
             left: 0;
             right: 0;
             margin: 0 auto;
 
         }
 
-        input:checked {
+        input[type=checkbox]:checked {
             counter-increment: score -1;
         }
+
 
         .score {
             transform: translate(70px, -10px);
@@ -68,46 +67,97 @@
             box-shadow: 0 19px 38px rgba(0, 0, 0, .3), 0 15px 12px rgba(0, 0, 0, .22);
         }
 
-        .layer-1 {
-            position: absolute;
-            bottom: 0;
-            right: 60px;
-            z-index: 1;
-            height: 450px;
-            width: 80px;
-            background: transparent;
+        .bunny {
+            display: flex;
+            position: relative;
+            width: 100px;
+            height: 110px;
             animation-name: jump;
-            animation-duration: 1s;
-            animation-delay: .5s;
             animation-timing-function: ease-in-out;
             animation-iteration-count: infinite;
         }
+
+        .layer-1 > .bunny {
+            animation-duration: .6s;
+        }
+
+        .layer-2 > .bunny {
+            animation-duration: .9s;
+        }
+
+        .layer-4 > .bunny {
+            animation-duration: .7s;
+        }
+
+        .layer-6 > .bunny {
+            animation-duration: .6s;
+        }
+
 
         @keyframes jump {
             0% {
                 bottom: 0;
             }
+
             25% {
                 bottom: -80px;
             }
+
             100% {
                 bottom: 0;
             }
         }
 
+        input[type=checkbox]:checked + .bunny{
+            animation-name: die;
+            animation-duration: 0.5s;
+            animation-iteration-count: 1;
+            animation-timing-function: linear;
+            animation-fill-mode: forwards;
+        }
+
+        @keyframes die {
+            0% {
+
+                transform: translateX(0px) translateY(0px);
+            }
+
+            25% {
+                transform: translateX(20px) translateY(10px);
+            }
+
+            50% {
+                transform: translateX(-20px) translateY(20px);
+            }
+
+            75% {
+                transform: translateX(20px) translateY(40px);
+            }
+
+            100% {
+                transform: translateX(0px) translateY(80px);
+            }
+        }
+
+        .layer-1 {
+            position: absolute;
+            bottom: 0;
+            right: 70px;
+            z-index: 1;
+            height: 450px;
+            width: 80px;
+            background: transparent;
+        }
+
+
         .layer-2 {
             position: absolute;
-            left: 60px;
+            left: 50px;
             bottom: 0;
             z-index: 2;
             height: 450px;
             width: 80px;
             background: transparent;
-            animation-name: jump;
-            animation-duration: 1s;
-            animation-delay: .8s;
-            animation-timing-function: ease-in-out;
-            animation-iteration-count: infinite;
         }
 
 
@@ -135,11 +185,6 @@
             background: transparent;
             bottom: 0;
             left: 50px;
-            animation-name: jump;
-            animation-duration: 1s;
-            animation-delay: 1s;
-            animation-timing-function: ease-in-out;
-            animation-iteration-count: infinite;
         }
 
         .layer-5 {
@@ -164,10 +209,6 @@
             background: transparent;
             bottom: 0;
             right: 50px;
-            animation-name: jump;
-            animation-duration: .5s;
-            animation-timing-function: ease-in-out;
-            animation-iteration-count: infinite;
         }
 
         .layer-7 {
@@ -286,6 +327,7 @@
             height: 50px;
             position: absolute;
             left: 10px;
+            top: 0;
         }
 
         .left-ear--inner {
@@ -305,6 +347,7 @@
             height: 50px;
             position: absolute;
             right: 10px;
+            top: 0;
         }
 
         .right-ear--inner {
@@ -391,8 +434,7 @@
         .cuadrado-1 {
             width: 50px;
             height: 50px;
-            background: linear-gradient(135deg, green
-             25%, transparent 25%) -50px 0, linear-gradient(-135deg, green 25%, transparent 25%) -50px 0, linear-gradient(315deg, #865439 25%, transparent 25%) -25px, linear-gradient(45deg, #865439 25%, transparent 25%) -25px;
+            background: linear-gradient(135deg, green 25%, transparent 25%) -50px 0, linear-gradient(-135deg, green 25%, transparent 25%) -50px 0, linear-gradient(315deg, #865439 25%, transparent 25%) -25px, linear-gradient(45deg, #865439 25%, transparent 25%) -25px;
         }
 
         .cuadrado-2 {
@@ -412,34 +454,37 @@
             height: 50px;
             background: linear-gradient(135deg, green 25%, transparent 25%) -50px 0, linear-gradient(-135deg, green 25%, transparent 25%) -50px 0, linear-gradient(315deg, #865439 25%, transparent 25%) -25px, linear-gradient(45deg, #865439 25%, transparent 25%) -25px;
         }
-
     </style>
 </head>
 
 <body>
     <div class="phone">
         <h1>Atrapa los conejos!!!</h1>
-        <div class="layer-1">
-            <div class="left-ear--outter"></div>
-            <div class="left-ear--inner"></div>
-            <div class="right-ear--outter"></div>
-            <div class="right-ear--inner"></div>
-            <div class="head">
-                <div class="head_eye left-eye"></div>
-                <div class="head_eye right-eye"></div>
-            </div>
-            <input type="checkbox">
+        <div class="layer-1" >
+            <input type="checkbox" id="bunny-1">
+            <label class="bunny" for="bunny-1">
+                <div class="left-ear--outter"></div>
+                <div class="left-ear--inner"></div>
+                <div class="right-ear--outter"></div>
+                <div class="right-ear--inner"></div>
+                <div class="head">
+                    <div class="head_eye left-eye"></div>
+                    <div class="head_eye right-eye"></div>
+                </div>
+            </label>
         </div>
         <div class="layer-2">
-            <div class="left-ear--outter"></div>
-            <div class="left-ear--inner"></div>
-            <div class="right-ear--outter"></div>
-            <div class="right-ear--inner"></div>
-            <div class="head">
-                <div class="head_eye left-eye"></div>
-                <div class="head_eye right-eye"></div>
-            </div>
-            <input type="checkbox">
+            <input type="checkbox" id="bunny-2">
+            <label class="bunny" for="bunny-2">
+                <div class="left-ear--outter"></div>
+                <div class="left-ear--inner"></div>
+                <div class="right-ear--outter"></div>
+                <div class="right-ear--inner"></div>
+                <div class="head">
+                    <div class="head_eye left-eye"></div>
+                    <div class="head_eye right-eye"></div>
+                </div>
+            </label>
         </div>
         <div class="layer-3">
             <div class="grass"></div>
@@ -452,15 +497,17 @@
             </div>
         </div>
         <div class="layer-4">
-            <div class="left-ear--outter"></div>
-            <div class="left-ear--inner"></div>
-            <div class="right-ear--outter"></div>
-            <div class="right-ear--inner"></div>
-            <div class="head">
-                <div class="head_eye left-eye"></div>
-                <div class="head_eye right-eye"></div>
-            </div>
-            <input type="checkbox">
+            <input type="checkbox" id="bunny-3">
+            <label class="bunny" for="bunny-3">
+                <div class="left-ear--outter"></div>
+                <div class="left-ear--inner"></div>
+                <div class="right-ear--outter"></div>
+                <div class="right-ear--inner"></div>
+                <div class="head">
+                    <div class="head_eye left-eye"></div>
+                    <div class="head_eye right-eye"></div>
+                </div>
+            </label>
         </div>
         <div class="layer-5">
             <div class="grass-2"></div>
@@ -472,15 +519,17 @@
             </div>
         </div>
         <div class="layer-6">
-            <div class="left-ear--outter"></div>
-            <div class="left-ear--inner"></div>
-            <div class="right-ear--outter"></div>
-            <div class="right-ear--inner"></div>
-            <div class="head">
-                <div class="head_eye left-eye"></div>
-                <div class="head_eye right-eye"></div>
-            </div>
-            <input type="checkbox">
+            <input type="checkbox" id="bunny-4">
+            <label class="bunny" for="bunny-4">
+                <div class="left-ear--outter"></div>
+                <div class="left-ear--inner"></div>
+                <div class="right-ear--outter"></div>
+                <div class="right-ear--inner"></div>
+                <div class="head">
+                    <div class="head_eye left-eye"></div>
+                    <div class="head_eye right-eye"></div>
+                </div>
+            </label>
         </div>
         <div class="layer-7">
             <div class="grass-2"></div>
@@ -492,9 +541,9 @@
             </div>
         </div>
         <div class="layer-8">
-            
-        <div class="layer-8-1"></div>
-        <div class="layer-8-2"></div>
+
+            <div class="layer-8-1"></div>
+            <div class="layer-8-2"></div>
         </div>
         <div class="layer-9">
             <div class="layer-91"></div>
